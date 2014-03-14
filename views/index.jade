@@ -10,26 +10,44 @@ html(lang="zh-cn",ng-app)
   body
     .container(ng-controller='HomeCtrl')
       .row
-        h1 欢迎
-        p BOERP
-        p. Test
-        table
-          tr
-            td td1
-            td td2
-          tr
-            td td1
-            td td2
-        h1.
-            User List
-        ul
-            li(ng-repeat="user in userlist")
-              a(href='mailto:{{user.email}}'){{user.username}}
+        .col-sm-12
+          h1 欢迎
+          p BOERP
+      .row
+        .col-sm-4
+          h1.
+            Add User
+          form.from(role='form')
+            .from-group
+              label 用户名
+              input.form-control(type='text',placeholder='用户名',ng-model='creating.username')
+            .form-group
+              label 密码
+              input.form-control(type='password',placeholder='密码',ng-model='creating.password')
+            .form-group
+              button.btn.btn-primary(ng-click='add($event)').
+                添加          
+        .col-sm-8
+          h1.
+              User List
+          table.table
+            thead
+              tr
+                th username
+                th useremail
+                th Delete?
+            tbody
+              tr(ng-repeat="user in userlist")
+                td {{user.username}}
+                td {{user.email}}
+                td
+
+
       .row
         .col-sm-3
           .panel.panel-default
-            div.panel-heading
-              h3 联系方式
+            div.panel-heading.
+              联系方式
             div.panel-body
               address= address
               i

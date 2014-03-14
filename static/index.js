@@ -1,5 +1,21 @@
 function HomeCtrl($scope, $http) {
-	$http.get('/userlist').success(function(data) {
-		$scope.userlist = data;
-	});
+	$scope.getlist = function() {
+
+		$http.get('/user').success(function(data) {
+			$scope.userlist = data;
+		});
+	};
+	$scope.getlist();
+	$scope.creating = {};
+	$scope.add = function($event) {
+		$event.preventDefault();
+		$http.post('/user', $scope.creating).success(function(data) {
+			if (data && data.success == '1') {
+				alert('success');
+
+				$scope.getlist();
+			} else
+				alert(data);
+		});
+	};
 }

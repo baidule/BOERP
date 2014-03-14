@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 app.configure(
   function() {
-    app.set('views', __dirname + '\\views');
+    app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
     app.use(express.bodyParser());
     app.use(express.methodOverride());
@@ -37,7 +37,9 @@ var mongodb = monk('localhost:27017/boerp');
 // });
 
 var redis = require('redis');
-var db = redis.createClient('6379', '192.168.184.130');
+// var db = redis.createClient('6379', '192.168.184.130');
+var db = redis.createClient('6379', '127.0.0.1');
+
 app.use(function(req, res, next) {
   var ua = req.headers['user-agent'];
   db.zadd('online', Date.now(), ua, next);
@@ -86,7 +88,10 @@ var routes = JSON.parse(fs.readFileSync('router.json', 'utf8'));
 
 var routes = require('./routes');
 app.get('/', routes.index);
-app.get('/userlist',routes.userlist(mongodb));
+var user=require('./routes/user');
+app.get('/user',user.list(mongodb));
+app.post('/user',user.create(mongodb));
+
 // var startRouter = function(path) {
 //   app.get(route, function(req, res) {
 //     //console.log("Connect to "+path);
