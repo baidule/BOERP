@@ -1,0 +1,36 @@
+doctype html
+html(lang="zh-cn",ng-app)
+  head
+    title= title
+    link(rel='stylesheet',type='text/css',href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css')
+    script(type='text/javascript',src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
+    script(type='text/javascript',src='//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js')
+    script(type='text/javascript',src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js')
+    script(type='text/javascript',src='/static/index.js')
+  body
+    .container(ng-controller='HomeCtrl')
+      .row
+        h1 欢迎
+        p BOERP
+        p. Test
+        table
+          tr
+            td td1
+            td td2
+          tr
+            td td1
+            td td2
+        h1.
+            User List
+        ul
+            li(ng-repeat="user in userlist")
+              a(href='mailto:{{user.email}}'){{user.username}}
+      .row
+        .col-sm-3
+          .panel.panel-default
+            div.panel-heading
+              h3 联系方式
+            div.panel-body
+              address= address
+              i
+              strong
