@@ -12,10 +12,15 @@ function HomeCtrl($scope, $http) {
 		$http.post('/user', $scope.creating).success(function(data) {
 			if (data && data.success == '1') {
 				alert('success');
-
 				$scope.getlist();
 			} else
 				alert(data);
 		});
 	};
+	$scope.delete = function($event, id) {
+		$event.preventDefault();
+		$http.delete('/user/' + id).success(function(data) {
+			$scope.getlist();
+		});
+	}
 }

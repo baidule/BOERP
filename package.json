@@ -8,6 +8,6 @@
     "redis": "*",
     "jade": "*",
     "mongodb": "*",
-    "monk": "*"
+    "mongoskin": "*"
   }
 }

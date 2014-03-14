@@ -41,8 +41,7 @@ html(lang="zh-cn",ng-app)
                 td {{user.username}}
                 td {{user.email}}
                 td
-
-
+                  button.btn.btn-default(ng-click="delete($event,user._id)") 删除
       .row
         .col-sm-3
           .panel.panel-default

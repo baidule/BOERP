@@ -12,9 +12,8 @@ app.configure(
     app.use(errorHandler);
     app.use('/static',express.static(__dirname + '/static'));
   });
-var mongo = require('mongodb');
-var monk = require('monk');
-var mongodb = monk('localhost:27017/boerp');
+var mongo = require('mongoskin');
+var mongodb = mongo.db("mongodb://localhost:27017/boerp", {native_parser:true});
 // app.configure('development', function() {
 
 //   app.use(express.errorHandler({
@@ -91,6 +90,7 @@ app.get('/', routes.index);
 var user=require('./routes/user');
 app.get('/user',user.list(mongodb));
 app.post('/user',user.create(mongodb));
+app.delete('/user/:id',user.delete(mongodb));
 
 // var startRouter = function(path) {
 //   app.get(route, function(req, res) {
@@ -99,7 +99,7 @@ app.post('/user',user.create(mongodb));
 //     var page = info[routes[path].data];
 
 //     res.render(routes[path].template, page); //最核心的一句
-
+ 
 //   }); 
 
 // };
