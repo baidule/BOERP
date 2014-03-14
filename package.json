@@ -1,13 +1,13 @@
 {
-	"name": "BOERP",
-	"description": "BOERP",
-	"version": "0.0.1",
-	"private": true,
-	"dependencies": {
-		"express": "3.5",
-		"redis": "0.10.1",
-		"jade": "1.3.0",
-		"mongodb": "1.3.23",
-		"monk": "0.8.1"
-	}
+  "name": "BOERP",
+  "description": "BOERP",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "~3.5.0",
+    "redis": "*",
+    "jade": "*",
+    "mongodb": "*",
+    "monk": "*"
+  }
 }
