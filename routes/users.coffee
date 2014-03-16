@@ -29,6 +29,18 @@ exports.create = (db) ->
         res.json success: 1
       return
     return
+exports.update= (db)->
+  (req,res)->
+    username = req.body.userName
+    email = req.body.useremail
+    filter =
+      username:username
+    collection = db.collection("usercollection")
+    collection.findOne filter,(err,user)->
+      user.email = email
+      user.save (err)->
+        return user
+    return
 exports.remove = (db)->
   (req, res) ->
     userToDelete = req.params.id

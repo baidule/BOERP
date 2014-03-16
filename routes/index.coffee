@@ -11,8 +11,9 @@ exports.initialize = (app,mongodb)->
 	    address: "中国"
 
 	  return
-	user = require("./user")
-	app.get "/user", user.list(mongodb)
-	app.post "/user", user.create(mongodb)
-	app.delete "/user/:id",user.remove(mongodb)
+	user = require("./users")
+	app.get "/users", user.list(mongodb)
+	app.post "/users", user.create(mongodb)
+	app.put "/users/:id",user.update(mongodb)
+	app.delete "/users/:id",user.remove(mongodb)
 	return

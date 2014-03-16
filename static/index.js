@@ -1,7 +1,7 @@
 function HomeCtrl($scope, $http) {
 	$scope.getlist = function() {
 
-		$http.get('/user').success(function(data) {
+		$http.get('/users').success(function(data) {
 			$scope.userlist = data;
 		});
 	};
@@ -9,7 +9,7 @@ function HomeCtrl($scope, $http) {
 	$scope.creating = {};
 	$scope.add = function($event) {
 		$event.preventDefault();
-		$http.post('/user', $scope.creating).success(function(data) {
+		$http.post('/users', $scope.creating).success(function(data) {
 			if (data && data.success == '1') {
 				alert('success');
 				$scope.getlist();
@@ -19,8 +19,8 @@ function HomeCtrl($scope, $http) {
 	};
 	$scope.delete = function($event, id) {
 		$event.preventDefault();
-		$http.delete('/user/' + id).success(function(data) {
+		$http.delete('/users/' + id).success(function(data) {
 			$scope.getlist();
 		});
-	}
+	};
 }
