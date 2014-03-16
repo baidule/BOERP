@@ -21,5 +21,6 @@ $ forever stop 0
 supervisor
 =====
 npm install supervisor -g
+supervisor --extensions 'node|jade|js|coffee' server.coffee
 
 

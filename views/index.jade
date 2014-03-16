@@ -14,6 +14,20 @@ html(lang="zh-cn",ng-app)
           h1 欢迎
           p BOERP
       .row
+        .col-sm-12
+          p.
+            凭证录入》凭证查询》明细账》总账》期末处理
+      .row
+        .col-sm-12
+          h1.
+            凭证录入
+          form.form(role='form')
+            .from-group
+              label 日期
+              input.form-control(type='text',placeholder='科目',ng-model='creatingVoncher.AddTime')
+            .form-group
+              label
+      .row
         .col-sm-4
           h1.
             Add User
