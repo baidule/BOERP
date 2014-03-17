@@ -31,7 +31,7 @@ app.configure ->
   return
 
 mongo = require("mongoskin")
-uristring = "mongodb://localhost:27017/boerp"
+uristring = "mongodb://mongodbserver:27017/boerp"
 app.set "db-uri", uristring
 mongodb = mongo.db(uristring,
   native_parser: true
@@ -44,25 +44,6 @@ mongoose.connect uristring, (err, res) ->
     console.log "success connect to " + uristring
   return
 
-redis = require("redis")
-db = redis.createClient("6379", "127.0.0.1")
-app.use (req, res, next) ->
-  ua = req.headers["user-agent"]
-  db.zadd "online", Date.now(), ua, next
-  return
-
-app.use (req, res, next) ->
-  min = 60 * 1000
-  ago = Date.now() - min
-  db.zrevrangebyscore "online", "+inf", ago, (err, users) ->
-    if err
-      req.online = []
-      return next(err)
-    req.online = users
-    next()
-    return
-
-  return
 
 routes = require("./routes/index")
 routes.initialize(app, mongodb)
