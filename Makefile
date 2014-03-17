@@ -6,7 +6,8 @@ JSCOVERAGE = ./node_modules/jscover/bin/jscover
 
 install:
 	@npm install
-
+run:
+	@supervisor --extensions 'node|jade|js|coffee' server.coffee
 test:
 	@NODE_ENV=test ./node_modules/mocha/bin/mocha \
     --compilers $(COMPILERS)\
